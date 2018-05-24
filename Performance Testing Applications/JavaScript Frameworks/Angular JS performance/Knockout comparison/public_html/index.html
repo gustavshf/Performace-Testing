@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<head>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.min.js"></script>
+   <link rel="stylesheet" href="css/bootstrap.css">
+   <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+   <input type="number" data-bind="textInput:numberOfItems" />
+      <button data-bind="click: changeNumerOfDisplayedItems">Display this number of items</button>
+	  <br/>
+   <button data-bind="click: changeOne">Change one</button>
+
+   <div class="row input-wrap">
+   </div>
+   <div class="media" data-bind="foreach: allItems">
+      <div class="row input-wrap">
+         <p data-bind="text: firstName()"></p>
+         <p data-bind="text: lastName()"></p>
+         <p data-bind="text: text()"></p>
+         <p data-bind="text: favorites()"></p>
+         <p data-bind="text: reposts()"></p>
+         <p data-bind="text: image()"></p>
+         <p data-bind="text: age()"></p>
+         <p data-bind="text: id()"></p>
+      </div>
+   </div>
+   <script src="js/index.js"></script>
+</body>
+</html>

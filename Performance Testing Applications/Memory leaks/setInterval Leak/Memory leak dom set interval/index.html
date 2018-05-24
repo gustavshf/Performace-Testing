@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<html>
+    <head>
+        <title>DOM Mezglu Noplūde</title>
+    </head>
+
+    <body>
+	<button id="leakbutton">Leak example button</button>
+		<button onclick="removeOtherButton()" id="removebutton">Remove the changing button (memory still taken)</button>
+	<button id="removeinterval" disabled>Remove The Interval (only now the memory is released)</button>
+        <div>
+            <ul id="posts"></ul>
+        </div>
+        <script src="js/index.js"></script>
+    </body>
+</html>

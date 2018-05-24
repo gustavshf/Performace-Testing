@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>Angular JS dirty checking performance</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+      <script type="text/javascript" src="js/index.js"></script>
+      <link rel="stylesheet" href="css/bootstrap.css">
+      <link rel="stylesheet" href="css/style.css">
+   </head>
+   <body>
+      <div id="app" ng-app="performanceTest" ng-controller="postsController">
+         <input type="number" ng-model="numberOfItems">
+		 <button ng-click="changeNumerOfDisplayedItems()">Display this number of items</button>
+         <button ng-click="changeOnePost()">Change one random item</button>
+         <hr>
+         <div>
+            <div class="media" ng-repeat="post in posts">
+               <div class="row input-wrap">
+                  <p>First name: {{post.firstName}};</p>
+                  <p>Last name: {{post.lastName}};</p>
+                  <p>Text: {{post.text}},</p>
+                  <p>Favorites: {{post.favorites}},</p>
+                  <p>Reposts: {{post.reposts}},</p>
+                  <p >Image: {{post.image}},</p>
+                  <p >Age: {{post.age}}</p>
+                  <p >Id: {{post.id}}</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

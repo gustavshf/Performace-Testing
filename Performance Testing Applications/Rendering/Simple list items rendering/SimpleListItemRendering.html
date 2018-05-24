@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>DOM manipulation test</title>
+<style>
+.btn {
+width: 5rem;
+}
+.captions {
+width: 12rem;
+display: inline-block;
+}
+</style>
+</head>
+<body>
+<script type="text/javascript">
+function runAppendWithReflow() {
+var iterations = parseInt(document.getElementById('listElementCount').value);
+var div = document.createElement('div');
+var w = 0;
+document.body.appendChild(div);
+console.time("Div - append with reflow " + iterations + "x");
+for (var i = 0; i < iterations; i++) {
+div.innerHTML += '<li>List item ' + i + '</li>';
+w = div.offsetWidth;
+}
+console.timeEnd("Div - append with reflow " + iterations + "x");
+}
+
+function runAppend() {
+var iterations = parseInt(document.getElementById('listElementCount').value);
+var div = document.createElement('div');
+document.body.appendChild(div);
+console.time("Div - append " + iterations + "x");
+for (var i = 0; i < iterations; i++) {
+div.innerHTML += '<li>List item ' + i + '</li>';
+}
+console.timeEnd("Div - append " + iterations + "x");
+}
+
+function runAppendChild() {
+var iterations = parseInt(document.getElementById('listElementCount').value);
+var div = document.createElement('div');
+document.body.appendChild(div);
+console.time("Div - appendChild " + iterations + "x");
+for (var i = 0; i < iterations; i++) {
+var el = document.createElement('li');
+el.innerText = 'List item ' + i;
+div.appendChild(el);
+}
+console.timeEnd("Div - appendChild " + iterations + "x");
+}
+function runAppendFragment() {
+var iterations = parseInt(document.getElementById('listElementCount').value);
+var div = document.createElement('div');
+var fragment = document.createDocumentFragment();
+document.body.appendChild(div);
+console.time("Div - append fragment " + iterations + "x");
+
+for (var i = 0; i < iterations; i++) {
+var el = document.createElement('li');
+el.innerText = 'List append fragment ' + i;
+fragment.appendChild(el);
+}
+div.appendChild(fragment);
+console.timeEnd("Div - append fragment " + iterations + "x");
+}
+function runAppendJoin() {
+var iterations = parseInt(document.getElementById('listElementCount').value);
+var div = document.createElement('div');
+var html = '';
+document.body.appendChild(div);
+console.time("Div - append join " + iterations + "x");
+for (var i = 0; i < iterations; i++) {
+html += '<li>List item ' + i + '</li>';
+}
+div.innerHTML = html;
+console.timeEnd("Div - append join " + iterations + "x");
+}
+function runAppendChildReflow() {
+var iterations = parseInt(document.getElementById('listElementCount').value);
+var div = document.createElement('div');
+var w=0;
+document.body.appendChild(div);
+console.time("Div - appendChild " + iterations + "x");
+for (var i = 0; i < iterations; i++) {
+var el = document.createElement('li');
+el.innerText = 'List item ' + i;
+div.appendChild(el);
+w=div.offsetWidth;
+}
+console.timeEnd("Div - appendChild " + iterations + "x");
+}
+</script>
+<span class="captions">Enter the number of list items to generate</span><input id="listElementCount" step="100" type="number" /><br/>
+<hr/>
+
+
+<span class="captions">Append with innerHTML and reflow </span><button
+class="btn" onclick="runAppendWithReflow()">Render</button>
+<br/><br/>
+<span class="captions">Append with innerHTML</span>
+<button class="btn" onclick="runAppend()">Render</button>
+<br/><br/>
+<span class="captions">Append with appendChild </span><button class="btn"
+onclick="runAppendChild()">Render</button>
+<br/><br/>
+<span class="captions">Append with fragment </span><button class="btn"
+onclick="runAppendFragment()">Render</button>
+<br/><br/>
+<span class="captions">Create string and set as HTML once</span><button
+class="btn" onclick="runAppendJoin()">Render</button>
+<br/><br/>
+<span class="captions">Append with appendChild and reflow</span><button
+class="btn" onclick="runAppendChildReflow()">Render</button>
+<br/><br/>
+<div id="testDiv"></div>
+</body>
+</html>
